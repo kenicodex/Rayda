@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { decrease, increase } from '../redux/cartSlice'
 import { useDispatch } from 'react-redux'
 import { RaydaBtn } from '../Components/Button'
+import { Checkout } from '../Pages/checkout'
 
 interface Showcart {
     showcart: Boolean;
@@ -73,12 +74,14 @@ function CartModal(props: Showcart) {
                     </>
                 })}
 
-                <Box sx={{ height: '500px' }}>
+                <Box sx={{ height: '300px' }}>
                     <Running>Total</Running> <Running>{total}</Running>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between ' }}>
 
-                        <RaydaBtn sx={{ width: '14rem', bgcolor: 'white', px: 0, border: '1px solid black', color: 'black' }}> VIEW BAG </RaydaBtn>
-                        <RaydaBtn sx={{ width: '14rem' }}> CHECKOUT</RaydaBtn>
+                        <RaydaBtn sx={{ width: '14rem', bgcolor: 'white', px: 0, border: '1px solid black', color: 'black' }}
+                            onClick={() => { window.location.assign('/cart') }}
+                        > VIEW BAG </RaydaBtn>
+                        <RaydaBtn sx={{ width: '14rem', position: 'relative' }}> CHECKOUT <Checkout total={total} /> </RaydaBtn>
                     </Box>
                 </Box>
             </Box>
