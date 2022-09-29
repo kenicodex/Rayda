@@ -40,7 +40,7 @@ function Card(props: any) {
                     lineHeight: "2.9rem",
                     letterSpacing: "0em",
                 }}>
-                    ${props.price}
+                    ${props.price} {props.inStock}
                 </Typography>
             </Box>
             <Box sx={{

@@ -6,6 +6,7 @@ import { PdpHeader, Running, Size } from '../Components/Text'
 import { useSelector } from 'react-redux'
 import { decrease, increase } from '../redux/cartSlice'
 import { useDispatch } from 'react-redux'
+import { RaydaBtn } from '../Components/Button'
 
 interface Showcart {
     showcart: Boolean;
@@ -20,8 +21,22 @@ function CartModal(props: Showcart) {
     React.useEffect(() => {
         setShowcart(props.showcart)
     }, [props.showcart])
+
+    const [total, setTotal] = React.useState<number>(0)
+    const [quantity, setQuantity] = React.useState<number>(0)
+    React.useEffect(() => {
+        let getTotal: Array<any> = [], getQuantity: Array<any> = [];
+        cart.forEach((element: any) => {
+            getTotal.push(parseInt(element.price) * element.number)
+            getQuantity.push(element.number)
+        });
+        setTotal(getTotal.reduce((a, b) => a + b))
+        setQuantity(getQuantity.reduce((a, b) => a + b))
+
+    }, [cart, quantity, total])
+
     return (
-        <Box sx={{ position: 'fixed', height: '100vh', width: '100%', display: showcart && cart.length >= 1 ? 'flex' : 'none', justifyContent: 'right', zIndex: 1, bgcolor: 'rgba(57, 55, 72, 0.22)' }}>
+        <Box sx={{ position: 'absolute', height: 'auto', width: '100%', display: showcart && cart.length >= 1 ? 'flex' : 'none', justifyContent: 'right', zIndex: 1, bgcolor: 'rgba(57, 55, 72, 0.22)' }}>
             <Box sx={{ px: '1.6rem', pt: '3.7rem', bgcolor: 'white', width: 'autyo', mr: { xs: 'auto', lg: '7.2rem' }, ml: { xs: 'auto', lg: '7.2rem' }, }}>
                 {cart.map((item: any, index: React.Key | null | undefined) => {
                     return <>
@@ -57,9 +72,18 @@ function CartModal(props: Showcart) {
                         }
                     </>
                 })}
+
+                <Box sx={{ height: '500px' }}>
+                    <Running>Total</Running> <Running>{total}</Running>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between ' }}>
+
+                        <RaydaBtn sx={{ width: '14rem', bgcolor: 'white', px: 0, border: '1px solid black', color: 'black' }}> VIEW BAG </RaydaBtn>
+                        <RaydaBtn sx={{ width: '14rem' }}> CHECKOUT</RaydaBtn>
+                    </Box>
+                </Box>
             </Box>
 
-        </Box>
+        </Box >
     )
 }
 

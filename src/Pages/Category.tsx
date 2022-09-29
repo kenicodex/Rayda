@@ -11,8 +11,9 @@ function Category() {
 
             <RaydaJumbo>   Women</RaydaJumbo>
 
-            <Box sx={{ display: 'flex', gap: { xs: '2rem', lg: '3rem' }, flexWrap: 'wrap', mx:0 }}>
-                {products.map(({ id, imageUrl, brand, name, price }, index) => <Card id={id} imageUrl={imageUrl} name={brand + " " + name} price={price} index={index} />)}
+            <Box sx={{ display: 'flex', gap: { xs: '2rem', lg: '3rem' }, flexWrap: 'wrap', mx: 0 }}>
+                {products.map(({ id, imageUrl, brand, name, price }, index) =>
+                    <Card id={id} imageUrl={imageUrl} name={brand + " " + name} price={price} index={index} />)}
             </Box>
         </RaydaBody>
     )

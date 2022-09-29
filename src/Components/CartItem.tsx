@@ -17,7 +17,7 @@ function CartItem(props: any) {
             <Box sx={{ order: { xs: 2, lg: 1 } }}>
                 <PdpHeader sx={{ lineHeight: '0' }}>{props.item.brand}</PdpHeader>
                 <Running>{props.item.name}</Running>
-                <Size>${props.item.price}</Size>
+                <Size>${props.item.price * props.item.number}</Size>
 
                 <SizesComponent width='6.3rem' height='4.5rem' font='1.5rem' />
                 <Colors />
@@ -30,7 +30,7 @@ function CartItem(props: any) {
                     <Box sx={{ border: '1px solid #1D1F22', width: '45px', height: '45px', display: 'grid', placeItems: 'center', fontSize: '2.2rem', cursor:'pointer'  }}
                     onClick={() => { dispatch(decrease(props.item)) }}>-</Box>
                 </Box>
-                <Box component={'img'} src={process.env.PUBLIC_URL + '/productimages/' + props.item.imageUrl} sx={{ order: { xs: 1, lg: 2 }, width: { xs: 'auto', lg: '200px' }, height: { xs: "auto", lg: '100%' } }} />
+                <Box component={'img'} src={process.env.PUBLIC_URL + '/productimages/' + props.item.imageUrl} sx={{ order: { xs: 1, lg: 2 }, width: { xs: 'auto', lg: '240px' }, height: { xs: "auto", lg: '100%' } }} />
             </Box>
         </Box>
     )
