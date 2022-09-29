@@ -6,19 +6,19 @@ import { addcart } from '../redux/cartSlice';
 import { useDispatch } from 'react-redux'
 
 function Card(props: any) {
-    const dispatch =  useDispatch()
-    
+    const dispatch = useDispatch()
+
     const [show, setShow] = React.useState(false)
     return (
         <Box onClick={() => { localStorage.setItem('item', props.index); window.location.assign('/pdp') }}
             onMouseOver={() => { setShow(true) }} onMouseOut={() => { setShow(false) }}
             sx={{
-                display: 'flex', flexDirection: 'column', gap: '24px', p: '1.6rem', position: 'relative'
+                display: 'flex', width: { xs: '100%', lg: `${90/3}%` }, flexDirection: 'column', gap: '24px', p: '1.5rem', position: 'relative', border: '1px solid white'
             }} className={'card'}>
             <Box>
                 <Box component={'img'} src={process.env.PUBLIC_URL + '/productimages/' + props.imageUrl} sx={{
                     maxHeight: '361.38037109375px',
-                    maxWidth: '79.15833129882812rem',
+                    maxWidth: '100%',
                 }} />
             </Box>
             <Box>

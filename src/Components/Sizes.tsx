@@ -13,7 +13,7 @@ function SizesComponent(props: Prrr) {
         <>
             <Size sx={{ mt: '0', mb: '8px' }}>Size: </Size>
             <Box sx={{ display: 'flex', gap: '1.2rem', mb: '24px' }}>{['xs', 's', 'm', 'l'].map((size, index) => {
-                return <SizesBox sx={{ width: props.width, height:props.height,}}><Sizes sx={{ fontSize: props.font}}> {size}</Sizes></SizesBox>
+                return <SizesBox key={index} sx={{ width: props.width, height:props.height,}}><Sizes sx={{ fontSize: props.font}}> {size}</Sizes></SizesBox>
             })}</Box>
 
         </>

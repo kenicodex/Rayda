@@ -1,29 +1,42 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+interface Edit {
+    id: number;
+    number: number
+}
 export const cartSlice = createSlice({
     name: 'cart',
-    initialState: [],
+    initialState: [], 
     reducers: {
-        addcart: (state, action) => {
-            // if (state.find(x => x.id === action.payload.product.id) === undefined) { // check if already in cart
-            //     let newProductObj = Object.assign(action.payload.product, { number: action.payload.number, inCart : true })
-            //     console.log(newProductObj);
-            //     state.push(action.payload)
-            // } else {
-            // }
+        addcart: (state: Array<any>, action) => {
+            let check = state.filter(x => x.id === action.payload.id)
+            if (check.length > 0) {
+                alert('already in cart')
+            } else {
+                const additionals = { ...action.payload, number: 1 }
+                state.push(additionals)
+            }
         },
         increase: (state, action) => {
-            // if (state[action.payload.index].number < state[action.payload.index].stock) {
-            //     state[action.payload.index]["number"] = state[action.payload.index]["number"] + 1
-            // }
+            state.map((edit: Edit) => {
+                if (edit.id === action.payload.id) {
+                    edit.number += 1
+                }
+
+                return state
+            })
+            return state
         },
         decrease: (state, action) => {
-            // if (state[action.payload.index].number !== 1) {
-            //     state[action.payload.index]["number"] = state[action.payload.index]["number"] - 1
-            // }
+            state.map((edit: Edit) => {
+                if (edit.id === action.payload.id) {
+                    edit.number -= 1
+                }
+                return state
+            })
+            return state
         },
         deletecart: (state, action) => {
-            // return state.filter(x => x.id !== action.payload.id)
+            
         }
     }
 })

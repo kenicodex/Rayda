@@ -22,6 +22,7 @@ function App() {
               <Route path="/category" element={<Category />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/pdp" element={<PDP />} />
+              <Route path="*" element={<Category />} />
             </Routes>
           </Layout>
         </BrowserRouter>

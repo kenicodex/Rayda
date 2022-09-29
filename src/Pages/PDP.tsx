@@ -5,6 +5,8 @@ import { PdpHeader, ProductDescription, Running, Size } from '../Components/Text
 import { RaydaBtn } from '../Components/Button';
 import Colors from '../Components/Colors';
 import SizesComponent from '../Components/Sizes';
+import { addcart } from '../redux/cartSlice';
+import { useDispatch } from 'react-redux'
 
 
 interface Item {
@@ -16,6 +18,7 @@ interface Item {
   extraImages: Array<any>;
 }
 function PDP() {
+  const dispatch = useDispatch()
   let index: any = localStorage.getItem('item')
   const [item, setItem] = React.useState<Item>({ imageUrl: '', brand: '', name: '', inStock: 0, price: 0, extraImages: [] })
   React.useEffect(() => {
@@ -49,13 +52,14 @@ function PDP() {
 
         <Running sx={{ mt: '0', mb: '43px' }}>{item.name}</Running>
 
-        <SizesComponent width='6.3rem' height='4.5rem' font='1.5rem'/>
+        <SizesComponent width='6.3rem' height='4.5rem' font='1.5rem' />
         <Colors />
 
         <Size>PRICE:</Size>
         <Size sx={{ fontFamily: 'Raleway' }}>${item.price}</Size>
 
-        <RaydaBtn sx={{ mb: { xs: '20px', lg: '40px' } }}>ADD TO CART</RaydaBtn>
+        <RaydaBtn sx={{ mb: { xs: '20px', lg: '40px' } }} onClick={() => { dispatch(addcart(item));
+      window.location.assign('/cart') }}>ADD TO CART</RaydaBtn>
 
         <ProductDescription>
           Find stunning women's cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses and party dresses from all your favorite brands.
